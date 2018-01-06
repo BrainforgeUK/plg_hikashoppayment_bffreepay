@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="plugin" version="2.5" method="upgrade" group="hikashoppayment">
-	<name>Hikashop Brainforge Free Payment Plugin</name>
+	<name>Brainforge Free Payment for Hikashop</name>
 	<creationDate>April 2011</creationDate>
-	<version>3.3.0</version>
+	<version>4.0.0</version>
 	<author>Jonathan Brain</author>
 	<authorEmail>brainforge@btinternet.com</authorEmail>
 	<authorUrl>http://www.brainforge.co.uk</authorUrl>
-	<copyright>Copyright (C) 2011 Brainforge - All rights reserved.</copyright>
+	<copyright>Copyright (C) 2011-2018 Brainforge - All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<description>This plugin can be used by authorised test users to make free purchases.</description>
 	<files>
@@ -24,4 +24,8 @@
 			</fieldset>
 		</fields>
 	</config>
+
+  <updateservers>
+      <server type="extension" priority="1" name="Brainforge Free Payment for Hikashop">https://brainforge.co.uk/media/com_bfupdater/plg_freepay.xml</server>
+  </updateservers>
 </extension>

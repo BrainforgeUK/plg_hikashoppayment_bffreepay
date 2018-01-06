@@ -13,6 +13,7 @@ class plgHikashoppaymentBF_Freepay extends hikashopPaymentPlugin {
 	var $multiple = true;
 	var $pluginConfig = array(
 		'order_status' => array('ORDER_STATUS', 'orderstatus'),
+		'order_finalstatus' => array('Final order status', 'radio', array('cancelled'=>'CANCELLED', '*'=>'ORDER_STATUS')),
 		'status_notif_email' => array('ORDER_STATUS_NOTIFICATION', 'boolean','0'),
 		'return_url' => array('RETURN_URL', 'input'),
 		'information' => array('ADDITIONAL_INFORMATION', 'big-textarea')
@@ -22,6 +23,9 @@ class plgHikashoppaymentBF_Freepay extends hikashopPaymentPlugin {
 		parent::onAfterOrderConfirm($order, $methods, $method_id);
 		$method =& $methods[$method_id];
 		$this->modifyOrder($order->order_id, $method->payment_params->order_status, @$method->payment_params->status_notif_email, false);
+    if ($method->payment_params->order_finalstatus != '*') {
+		  $this->modifyOrder($order->order_id, 'cancelled', @$method->payment_params->status_notif_email, false);
+    }  
 		$this->removeCart = true;
 
 		$this->information = $method->payment_params->information;
@@ -39,5 +43,6 @@ class plgHikashoppaymentBF_Freepay extends hikashopPaymentPlugin {
 		$element->payment_name='Freepay';
 		$element->payment_description='You can buy without paying us anything!';
 		$element->payment_params->order_status='confirmed';
+		$element->payment_params->order_finalstatus='cancelled';
 	}
 }
