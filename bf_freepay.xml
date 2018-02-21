@@ -27,7 +27,7 @@
 
   <updateservers>
       <server type="extension" priority="1" name="Hikashoppayment - Free Payment by BrainforgeUK">
-				https://brainforge.co.uk/component/bfupdater?element=plg_hikashoppayment_freepay.xml
+				https://brainforge.co.uk/component/bfupdater?element=plg_hikashoppayment_bffreepay.xml
 			</server>
   </updateservers>
 </extension>
