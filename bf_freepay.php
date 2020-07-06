@@ -1,9 +1,9 @@
 <?php
 /**
  * @package    HikaShop for Joomla!
- * @version    2.3.3
+ * @version    4.3.0
  * @author    hikashop.com
- * @copyright    (C) 2010-2014 HIKARI SOFTWARE. All rights reserved.
+ * @copyright    (C) 2010-2020 HIKARI SOFTWARE. All rights reserved.
  * @license    GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 defined('_JEXEC') or die('Restricted access');
@@ -21,12 +21,24 @@ class plgHikashoppaymentBF_Freepay extends hikashopPaymentPlugin
 		'information' => array('ADDITIONAL_INFORMATION', 'big-textarea')
 	);
 
+	function onBeforeOrderCreate(&$order, &$do)
+	{
+	}
+
+	function onAfterOrderCreate(&$order, &$send_email)
+	{
+		if (empty($order->cart->payment->payment_params->status_notif_email))
+		{
+			$send_email = false;
+		}
+	}
+
 	function onAfterOrderConfirm(&$order, &$methods, $method_id)
 	{
 		parent::onAfterOrderConfirm($order, $methods, $method_id);
 		$method =& $methods[$method_id];
 		$this->modifyOrder($order->order_id,
-			$method->payment_params->order_status, @$method->payment_params->status_notif_email, false);
+			$method->payment_params->order_status, !empty($method->payment_params->status_notif_email), false);
 		if ($method->payment_params->order_finalstatus != '*')
 		{
 			$this->modifyOrder($order->order_id, 'cancelled', @$method->payment_params->status_notif_email, false);
