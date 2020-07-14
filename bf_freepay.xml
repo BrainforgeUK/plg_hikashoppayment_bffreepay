@@ -2,7 +2,7 @@
 <extension type="plugin" version="2.5" method="upgrade" group="hikashoppayment">
     <name>Hikashoppayment - Free Payment by BrainforgeUK</name>
     <creationDate>April 2011</creationDate>
-    <version>4.1.0</version>
+    <version>4.2.0</version>
     <author>Jonathan Brain</author>
     <authorEmail>brainforge@btinternet.com</authorEmail>
     <authorUrl>http://www.brainforge.co.uk</authorUrl>

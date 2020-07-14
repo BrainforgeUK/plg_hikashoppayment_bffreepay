@@ -27,6 +27,11 @@ class plgHikashoppaymentBF_Freepay extends hikashopPaymentPlugin
 
 	function onAfterOrderCreate(&$order, &$send_email)
 	{
+		if(empty($order->order_payment_method) || $order->order_payment_method != $this->name)
+		{
+			return true;
+		}
+
 		if (empty($order->cart->payment->payment_params->status_notif_email))
 		{
 			$send_email = false;
