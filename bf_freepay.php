@@ -40,6 +40,11 @@ class plgHikashoppaymentBF_Freepay extends hikashopPaymentPlugin
 
 	function onAfterOrderConfirm(&$order, &$methods, $method_id)
 	{
+		if(empty($order->order_payment_method) || $order->order_payment_method != $this->name)
+		{
+			return true;
+		}
+
 		parent::onAfterOrderConfirm($order, $methods, $method_id);
 		$method =& $methods[$method_id];
 		$this->modifyOrder($order->order_id,
